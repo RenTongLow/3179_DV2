@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 380,
+  "height": 260,
+  "title": "Distance Popularity Ranking Over Time",
+  "data": {
+    "url": "data/distance_ranking.csv"
+  },
+  "mark": {
+    "type": "line",
+    "point": true,
+    "strokeWidth": 3
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": { "labelAngle": 0 }
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Popularity Rank",
+      "scale": { "domain": [4, 1] },
+      "axis": { "tickCount": 4, "grid": true }
+    },
+    "color": {
+      "field": "distance",
+      "type": "nominal",
+      "title": "Distance",
+      "scale": { "scheme": "tableau10" }
+    },
+    "tooltip": [
+      { "field": "year", "type": "ordinal", "title": "Year" },
+      { "field": "distance", "type": "nominal", "title": "Distance" },
+      { "field": "rank", "type": "quantitative", "title": "Rank" }
+    ]
+  },
+  "config": {
+    "view": { "stroke": null }
+  }
+}

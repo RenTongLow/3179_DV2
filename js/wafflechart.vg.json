@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 270,
+  "title": "Participant Gender Composition",
+  "data": {
+    "sequence": { "start": 0, "stop": 100, "step": 1 }
+  },
+  "transform": [
+    {
+      "calculate": "datum.data < 54 ? 'Male' : 'Female'",
+      "as": "gender"
+    },
+    {
+      "calculate": "floor(datum.data / 10)",
+      "as": "row"
+    },
+    {
+      "calculate": "datum.data % 10",
+      "as": "col"
+    }
+  ],
+  "mark": {
+    "type": "square",
+    "size": 300,
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "sort": "descending",
+      "axis": null
+    },
+    "color": {
+      "field": "gender",
+      "type": "nominal",
+      "title": "Gender",
+      "scale": { "range": ["#2563eb", "#f97316"] }
+    },
+    "tooltip": [{ "field": "gender", "type": "nominal", "title": "Group" }]
+  },
+  "config": {
+    "view": { "stroke": null }
+  }
+}
